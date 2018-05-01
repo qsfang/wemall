@@ -1,10 +1,10 @@
 <template name="input-number">
     <view class="input-number">
-        <view class="input-number-icon">
+        <view class="input-number-icon" bindtap="onSubProductNum">
             <image class="input-number-icon-img" mode="aspectFit" src="../../icons/sub.png" />
         </view>
         <input class="input-number-input" type="number" value="{{value}}"/>
-        <view class="input-number-icon">
+        <view class="input-number-icon" bindtap="onAddProductNum">
             <image class="input-number-icon-img" mode="aspectFit" src="../../icons/add.png" />
         </view>
     </view>

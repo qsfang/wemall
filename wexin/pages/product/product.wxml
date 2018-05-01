@@ -1,4 +1,6 @@
 <!--商品详情页-->
+<import src="components/select.wxml" />
+<import src="components/addCart.wxml" />
 <import src="components/buy.wxml" />
 
 <view class="product-container">
@@ -28,7 +30,7 @@
                 </view>
             </view>
             <view class="product-spec-picker">
-                <view bindtap="onWillBuy" class="product-spec">选择: {{propertyNames}}</view>
+                <view bindtap="onProductSelect" class="product-spec">选择: {{propertyNames}}</view>
                 <view style="flex: 1;"></view>
                 <view class="product-spec-arrow">
                     <image class="product-spec-arrow-img" src="../../icons/right_arrow.png"></image>
@@ -56,8 +58,10 @@
             </view>
             <text class="cart-text">购物车</text>
         </view>
-        <view bindtap="onAddToCartTap" class="tabbar-item tabbar-add-cart"><text>加入购物车</text></view>
+        <view bindtap="onWillAddCart" class="tabbar-item tabbar-add-cart"><text>加入购物车</text></view>
         <view bindtap="onWillBuy" class="tabbar-item tabbar-buy-now"><text>立即购买</text></view>
     </view>
-    <template is="buy" data="{{product: product, buyPopupBottom: buyPopupBottom, buyPopupVisible: buyPopupVisible, buyAnimationData: buyAnimationData, onPropertySelect: onPropertySelect}}"/>
+    <template is="select" data="{{product: product, buyProductNum:buyProductNum, buyPopupBottom: buyPopupBottom, selectPopupVisible: selectPopupVisible, buyAnimationData: buyAnimationData, onPropertySelect: onPropertySelect}}"/>
+    <template is="addCart" data="{{product: product, buyProductNum:buyProductNum, buyPopupBottom: buyPopupBottom, willAddCartPopupVisible: willAddCartPopupVisible, buyAnimationData: buyAnimationData, onPropertySelect: onPropertySelect}}"/>
+    <template is="buy" data="{{product: product, buyProductNum:buyProductNum,   buyPopupBottom: buyPopupBottom, willBuyPopupVisible: willBuyPopupVisible, buyAnimationData: buyAnimationData, onPropertySelect: onPropertySelect}}"/>
 </view>

@@ -7,10 +7,13 @@ Page({
         count: 99,
         swiperHeight     : '',
         buyAnimationData : {},
-        buyPopupVisible  : false,
+        selectPopupVisible  : false,
+        willBuyPopupVisible: false,
+        willAddCartPopupVisible: false,
         //小程序不能获取组件的高度，暂时写个相对较大的固定值
         buyPopupBottom   : '-1000rpx',
-        propertyNames    : ''
+        propertyNames    : '',
+        buyProductNum: 1,
     },
     onPriceTap() {
 
@@ -44,6 +47,48 @@ Page({
             }
         });
     },
+    // TODO, buy && Add product to order
+    onAddToOrder() {
+      var app = getApp();
+      // todo 验证是否登陆
+      wx.request({
+        url: config.api.addToCart,
+        method: "POST",
+        data: {
+          productId: parseInt(this.data.id),
+          count: 1
+        },
+        header: {
+          'content-type': 'application/json',
+          'Cookie': 'sid=' + app.globalData.sid
+        },
+        success: function (res) {
+
+        }
+      });
+    },
+
+    onSubProductNum(e){
+      var self = this
+      var num = self.data.buyProductNum-1
+      if(num<1){
+        num=1
+      }
+      console.log(num)
+      this.setData({
+        buyProductNum: num,
+      });
+    },  
+
+    onAddProductNum(e) {
+      var self = this
+      var num = self.data.buyProductNum + 1
+      console.log(num)
+      this.setData({
+        buyProductNum: num,
+      });
+    },   
+
     onLoad(options) {
         var self = this;
         this.setData({
@@ -180,6 +225,23 @@ Page({
             product: this.data.product
         });
     },
+    onProductSelect() {
+      var self = this;
+      var animation = wx.createAnimation({
+        duration: 300,
+        timingFunction: 'ease-out'
+      });
+      animation.bottom(0).step();
+      this.setData({
+        selectPopupVisible: true,
+        buyPopupBottom: this.data.buyPopupBottom
+      });
+      setTimeout(function () {
+        self.setData({
+          buyAnimationData: animation.export()
+        });
+      }, 50);
+    },
     onWillBuy() {
         var self = this;
         var animation = wx.createAnimation({
@@ -188,7 +250,7 @@ Page({
         });
         animation.bottom(0).step();
         this.setData({
-            buyPopupVisible : true,
+            willBuyPopupVisible : true,
             buyPopupBottom  : this.data.buyPopupBottom
         });
         setTimeout(function() {
@@ -196,6 +258,23 @@ Page({
                 buyAnimationData : animation.export()
             });    
         }, 50);
+    },
+    onWillAddCart() {
+      var self = this;
+      var animation = wx.createAnimation({
+        duration: 300,
+        timingFunction: 'ease-out'
+      });
+      animation.bottom(0).step();
+      this.setData({
+        willAddCartPopupVisible: true,
+        buyPopupBottom: this.data.buyPopupBottom
+      });
+      setTimeout(function () {
+        self.setData({
+          buyAnimationData: animation.export()
+        });
+      }, 50);
     },
     onWillHideBuy() {
         var self = this;
@@ -209,8 +288,40 @@ Page({
         });
         setTimeout(function() {
             self.setData({
-                buyPopupVisible : false
+                willBuyPopupVisible : false
             });    
         }, 330);
+    },
+    onWillHideSelect() {
+      var self = this;
+      var animation = wx.createAnimation({
+        duration: 300,
+        timingFunction: 'ease-in'
+      });
+      animation.bottom(this.data.buyPopupBottom).step();
+      this.setData({
+        buyAnimationData: animation.export()
+      });
+      setTimeout(function () {
+        self.setData({
+          selectPopupVisible: false
+        });
+      }, 330);
+    },
+    onWillHideAddCart() {
+      var self = this;
+      var animation = wx.createAnimation({
+        duration: 300,
+        timingFunction: 'ease-in'
+      });
+      animation.bottom(this.data.buyPopupBottom).step();
+      this.setData({
+        buyAnimationData: animation.export()
+      });
+      setTimeout(function () {
+        self.setData({
+          willAddCartPopupVisible: false
+        });
+      }, 330);
     }
 })
