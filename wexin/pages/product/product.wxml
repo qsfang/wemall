@@ -24,7 +24,7 @@
                 </view>
                 <view style="flex: 1;"></view>
                 <view class="stock">
-                    <text>剩余: 99</text>
+                    <text>剩余: {{count ? 99 : product.inventories.count}}</text>
                 </view>
             </view>
             <view class="product-spec-picker">

@@ -11,7 +11,7 @@
                         <image class="product-buy-info-img" mode="aspectFit" src="{{product.image.url}}"></image>
                     </view>
                     <view class="product-buy-info-name-box">
-                        <view class="product-buy-info-name">{{product.name}}阿道夫阿卡的风景爱疯啊阿迪飞道夫阿卡的风景爱疯啊阿迪飞道夫阿卡的风景爱疯啊阿迪飞</view>
+                        <view class="product-buy-info-name">{{product.name}}</view>
                         <view class="product-buy-info-price">¥ {{product.price}}</view>
                     </view>
                     <view bindtap="onWillHideBuy" class="product-buy-info-close-box">
@@ -40,7 +40,10 @@
                     </view>
                 </view>
             </view>
-            <view class="buy-next-step">下一步</view>
+            <view class="tabbar-select">
+              <view bindtap="onAddToCartTap" class="tabbar-item tabbar-select-add-cart"><text>加入购物车</text></view>
+              <view bindtap="onWillBuy" class="tabbar-item tabbar-select-buy-now"><text>立即购买</text></view>
+            </view>
         </view>
     </view>
 </template>

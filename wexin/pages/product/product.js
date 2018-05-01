@@ -4,6 +4,7 @@ Page({
     data: {
         id               : '',
         product          : null,
+        count: 99,
         swiperHeight     : '',
         buyAnimationData : {},
         buyPopupVisible  : false,
@@ -60,6 +61,7 @@ Page({
         wx.request({
             url: config.api.reqProductDetail.replace(':id', options.id),
             success: function(res) {
+                console.log(res)
                 var product = res.data.data.product || null;
                 product.image.url = config.static.imageDomain + product.image.url;
                 product.price     = product.price.toFixed(2);
@@ -148,6 +150,7 @@ Page({
                 for (var i = 0; i < product.properties.length; i++) {
                     propertyNames += (product.properties[i].name + ' ');
                 }
+                
                 self.setData({
                     product       : product,
                     propertyNames : propertyNames

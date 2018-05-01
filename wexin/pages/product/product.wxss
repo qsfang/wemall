@@ -143,6 +143,14 @@ page {
     font-size: 0;
 }
 
+.tabbar-select {
+    height: 80rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .tabbar-item {
     height: 120rpx;
 }
@@ -196,6 +204,24 @@ page {
 }
 
 .tabbar-buy-now {
+    color: #fff;
+    background-color: #fc464a;
+    line-height: 120rpx;
+    width: 100%;
+    text-align: center;
+    font-size: 38rpx;
+}
+
+.tabbar-select-add-cart {
+    color: #fff;
+    background-color: #fd885b;
+    line-height: 120rpx;
+    width: 100%;
+    text-align: center;
+    font-size: 38rpx;
+}
+
+.tabbar-select-buy-now {
     color: #fff;
     background-color: #fc464a;
     line-height: 120rpx;

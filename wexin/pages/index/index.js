@@ -7,8 +7,23 @@ Page({
         itemWidth: '',
         products: []
     },
-    onCategoryTap: function() {
-        
+    onCategoryTap: function(event) {
+        //console.log(event)
+      var self = this;
+      var cateid = event.currentTarget.dataset.id;
+      wx.request({
+        url: config.api.reqProductList + "?cateId=" + cateid,
+        success: function (res) {
+          var products = res.data.data.products || [];
+          for (var i = 0; i < products.length; i++) {
+            products[i].image.url = config.static.imageDomain + products[i].image.url;
+          }
+          console.log(products)
+          self.setData({
+            products: products
+          });
+        }
+      });
     },
     onProductTap: function(event) {
         var id = event.currentTarget.dataset.id;
@@ -31,6 +46,7 @@ Page({
             url : config.api.reqCategoryList,
             success: function(res) {
                 var categories = res.data.data.categories || [];
+                //console.log(categories)
                 self.setData({
                     categories: categories 
                 });
