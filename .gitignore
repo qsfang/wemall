@@ -3,7 +3,6 @@
 *.swp
 .bashrc
 
-configuration.json
 configuration.prod.json
 DESIGN.md
 debug

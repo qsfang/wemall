@@ -31,6 +31,7 @@ Page({
     onAddToCartTap() {
         var app = getApp();
         // todo 验证是否登陆
+        console.log(app)
         wx.request({
             url: config.api.addToCart,
             method: "POST",
@@ -43,7 +44,7 @@ Page({
                 'Cookie'       : 'sid=' + app.globalData.sid
             },
             success: function(res) {
-                
+                console.log(res)
             }
         });
     },

@@ -22,7 +22,7 @@ var login = {
                     'Cookie'       : "sid=" + resData.sid
                 },
                 method: "POST",
-                success: function(res) {
+                  success: function(res) {
                     app.globalData.userInfo      = resData.userInfo;
                     app.globalData.encryptedData = resData.encryptedData;
                     app.globalData.iv            = resData.iv;
