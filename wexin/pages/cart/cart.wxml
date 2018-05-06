@@ -15,19 +15,19 @@
                 <view class="wemall-action-edit">编辑</view>
             </view>
         </view>
-        <view class="cart-item" wx:for="{{carts}}" wx:key="{{item.id}}">
+        <view class="cart-item" wx:for="{{carts}}" wx:key="{{item.cart.id}}">
             <view class="wemall-checkbox-container" style="margin-top: 70rpx;">
-                <image wx:if="{{item.checked}}" mode="aspectFit" src="../../icons/check.png" class="wemall-checkbox"></image>
+                <image wx:if="{{item.cart.checked}}" mode="aspectFit" src="../../icons/check.png" class="wemall-checkbox"></image>
                 <image wx:else mode="aspectFit" src="../../icons/uncheck.png" class="wemall-checkbox"></image>
             </view>
             <view>
-                <image class="product-image" mode="aspectFit" src="{{item.imageUrl}}"></image>
+                <image class="product-image" mode="aspectFit" src="{{item.product.image.url}}"></image>
             </view>
             <view class="product-info">
-                <text class="product-name">{{item.name}}</text>
+                <text class="product-name">{{item.product.name}}</text>
                 <view class="product-price-box">
-                    <view class="product-price">¥ {{item.price}}</view>
-                    <view class="product-count">X{{item.count}}</view>
+                    <view class="product-price">¥ {{item.product.price}}</view>
+                    <view class="product-count">X{{item.cart.count}}</view>
                 </view>
             </view>
         </view>
@@ -41,10 +41,10 @@
         <view class="total-money-box">
             <view class="total-pay">合计: </view>
             <view>
-                <view class="total-money">¥ 22.56</view>
+                <view class="total-money">{{ totalMoney }}</view>
                 <view class="no-freight">不含运费</view>
             </view>
         </view>  
-        <view class="cart-submit">结算</view>  
+        <view class="cart-submit" bindtap="onSubmitToOrder">结算</view>  
     </view>
 </view>
