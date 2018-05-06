@@ -21,7 +21,7 @@
                 <image wx:else mode="aspectFit" src="../../icons/uncheck.png" class="wemall-checkbox"></image>
             </view>
             <view>
-                <image class="product-image" mode="aspectFit" src="{{item.image.url}}"></image>
+                <image class="product-image" mode="aspectFit" src="{{item.imageUrl}}"></image>
             </view>
             <view class="product-info">
                 <text class="product-name">{{item.name}}</text>

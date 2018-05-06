@@ -29,6 +29,7 @@ Page({
         });
     },
     onAddToCartTap() {
+        var self = this
         var app = getApp();
         // todo 验证是否登陆
         console.log(app)
@@ -37,7 +38,7 @@ Page({
             method: "POST",
             data: {
                 productId : parseInt(this.data.id),
-                count: 1
+                count: self.data.buyProductNum
             },
             header: {
                 'content-type' : 'application/json',
@@ -51,13 +52,14 @@ Page({
     // TODO, buy && Add product to order
     onAddToOrder() {
       var app = getApp();
+      var self = this
       // todo 验证是否登陆
       wx.request({
         url: config.api.addToCart,
         method: "POST",
         data: {
           productId: parseInt(this.data.id),
-          count: 1
+          count: self.data.buyProductNum
         },
         header: {
           'content-type': 'application/json',
